@@ -4,20 +4,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Online Screen Capture</title>
+  
+  <title>Web-based Screen Capture</title>
+  <meta name="description" content="This really simple tool allows you to screen capture using only your browser. Without downloads. For free.">
+  
+  <!-- Imports my cool navbar into the document :) -->
+  <script src="https://labs.matheus.io/shared/labs-utility.js" async></script>
 </head>
 <body>
-  <h1>Web Screen Capture</h1>
-  <h2>This really basic tool allows you to screen capture using only your browser.</h2>
-  <p>Click the button below to get started.</p>
-  <p>This website doesn't save anything captured using the tool.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>Web-based Screen Capture</h1>
+        <h2 class="h6">This really simple tool allows you to screen capture using only your browser. Without downloads. For free.</h2>
+        <p>Use the tools below to configure and control your recordings.</p>
+        <p>
+          <strong>Note:</strong>
+          This website doesn't save or upload anything captured using the tool. Everything is done inside the browser.
+        </p>
+        <p>Source-code is <a href="https://github.com/MatheusMK3/web-screen-capture">available on GitHub</a>.</p>
+      </div>
+    </div>
 
-  <a href="#" id="btn-start">Start Capture</a>
-  <a href="#" id="btn-save" disabled>Save Capture</a>
+    <!-- Recording Settings -->
+    <div class="card mb-4">
+      <div class="card-header">Recording Settings</div>
+      <div class="card-body">
+        <div class="row">
 
-  <div id="recorder"></div>
+          <!-- Codec -->
+          <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <label>
+              Recording Codec:
+              <select class="form-control" id="opt-codec"></select>
+            </label>
+          </div>
 
+          <!-- Frame Rate -->
+          <div class="col-sm-6 col-md-4 col-lg-2 col-xl-2">
+            <label>
+              Frame Rate:
+              <select class="form-control" id="opt-framerate">
+                <option>60</option>
+                <option>50</option>
+                <option>48</option>
+                <option>30</option>
+                <option>25</option>
+                <option>24</option>
+                <option>15</option>
+                <option>10</option>
+                <option>5</option>
+                <option>1</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Video Bitrate -->
+          <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <label>
+              Video Bitrate:
+              <select class="form-control" id="opt-bitrate-video">
+                <option value="10485760">10 Mbit</option>
+                <option value="8388608">8 Mbit</option>
+                <option value="6291456" selected>6 Mbit</option>
+                <option value="4194304">4 Mbit</option>
+                <option value="2097152">2 Mbit</option>
+                <option value="1048576">1 Mbit</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Audio Bitrate -->
+          <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <label>
+              Audio Bitrate:
+              <select class="form-control" id="opt-bitrate-video">
+                <option value="395264">386 Kbps</option>
+                <option value="262144">256 Kbps</option>
+                <option value="196608" selected>192 Kbps</option>
+                <option value="131072">128 Kbps</option>
+                <option value="98304">96 Kbps</option>
+                <option value="65536">64 Kbps</option>
+              </select>
+            </label>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Recording Status -->
+    <div class="card mb-4">
+      <div class="card-header">Recording Status</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 text-center">
+            <span id="status"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recording Controls -->
+    <div class="card mb-4">
+      <div class="card-header">Recording Controls</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 text-center">
+            <a class="btn btn-success" href="#" id="btn-start">Start Capture</a>
+            <a class="btn btn-danger" href="#" id="btn-stop">Stop Capture</a>
+            <a class="btn btn-primary ml-3" href="#" id="btn-save">Save Capture</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recording Controls -->
+    <div class="card mb-4" id="previewContainer">
+      <div class="card-header">Preview</div>
+      <div class="card-body" style="position: relative; padding: 0px; padding-bottom: 56.25%;">
+        <video controls autoplay id="preview" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- App -->
   <script src="js/app.js"></script>
 </body>
 </html>
